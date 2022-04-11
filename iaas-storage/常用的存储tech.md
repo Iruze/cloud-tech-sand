@@ -1,0 +1,1 @@
+[块存储、文件存储、对象存储的理解](https://www.cnblogs.com/jimlau/p/11926282.html)
