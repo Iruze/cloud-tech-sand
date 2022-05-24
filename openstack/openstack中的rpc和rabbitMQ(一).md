@@ -102,7 +102,6 @@ RPC 是一种基于 TCP(也可以直接基于HTTP) 的通信协议，按理说�
 <pre><code class="language-cpp">from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
 
 class cal(object):
-
     print("successfully received message!")
     add = lambda self, x, y: x + y
     sub = lambda self, x, y: x - y
