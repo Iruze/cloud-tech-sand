@@ -140,10 +140,10 @@ import zerorpc
 class cal(object):
 
     echo = lambda self, name: "Nice to meet you, %s" % name
-    add = lambda self, x, y: x + y
-    sub = lambda self, x, y: x - y
-    div = lambda self, x, y: x / y
-    mul = lambda self, x, y: x * y
+    add = lambda self, x, y: int(x) + int(y)
+    sub = lambda self, x, y: int(x) - int(y)
+    div = lambda self, x, y: int(x) / int(y)
+    mul = lambda self, x, y: int(x) * int(y)
 
 s = zerorpc.Server(cal())
 s.bind("tcp://0.0.0.0:4242")
@@ -153,9 +153,36 @@ s.run()
 </details>
 
 客户端调用：
-![img_10.png](img_10.png)
+```python
+>>> import zerorpc
+>>> c = zerorpc.Client()
+>>> c.connect("tcp://127.0.0.1:4242")
+[<SocketContext(connect='tcp://127.0.0.1:4242')>]
+>>> c.echo("zzw")
+'Nice to meet you, zzw'
+>>> c.add(3, 2)
+5
+>>> c.mul(11, 22)
+242
+```
 zerorpc也可以通过命令行调用：
-![img_11.png](img_11.png)
+```shell
+➜  test zerorpc tcp://localhost:4242 echo zzw
+connecting to "tcp://localhost:4242"
+'Nice to meet you, zzw'
+➜  test zerorpc tcp://localhost:4242 add 11 33
+connecting to "tcp://localhost:4242"
+44
+➜  test zerorpc tcp://localhost:4242 sub 3 11
+connecting to "tcp://localhost:4242"
+-8
+➜  test zerorpc tcp://localhost:4242 mul 11 22
+connecting to "tcp://localhost:4242"
+242
+➜  test zerorpc tcp://localhost:4242 div 1 3
+connecting to "tcp://localhost:4242"
+0.3333333333333333
+```
 
 同样的，zerorpc server也可以通过命令行启动，不在赘述。
 
