@@ -98,7 +98,7 @@ RPC 是一种基于 TCP(也可以直接基于HTTP) 的通信协议，按理说�
 ### 基于json-rpc
 `SimpleJSONRPCServer` 是基于`json-rpc`序列化协议实现的rpc，很多web框架其自身都自己实现了json-rpc。
 <details> 
-<summary><font size="4" color="orange">rpc server</font></summary>
+<summary><font size="5" color="orange">rpc server</font></summary>
 
 ```python
 from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
@@ -132,7 +132,7 @@ server.serve_forever()
 这个第三方库，它是基于TCP协议、 ZeroMQ 和 MessagePack的，速度相对快，响应时间短，并发高
 
 <details> 
-<summary><font size="4" color="orange">zerorpc server</font></summary>
+<summary><font size="5" color="orange">zerorpc server</font></summary>
 
 ```python
 import zerorpc
