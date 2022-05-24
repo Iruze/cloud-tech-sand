@@ -98,10 +98,13 @@ RPC 是一种基于 TCP(也可以直接基于HTTP) 的通信协议，按理说�
 ### 基于json-rpc
 `SimpleJSONRPCServer` 是基于`json-rpc`序列化协议实现的rpc，很多web框架其自身都自己实现了json-rpc。
 <details> 
-<summary><font size="4" color="orange">rpc server</font></summary> 
-<pre><code class="language-cpp">from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
+<summary><font size="4" color="orange">rpc server</font></summary>
+
+```python
+from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
 
 class cal(object):
+    
     print("successfully received message!")
     add = lambda self, x, y: x + y
     sub = lambda self, x, y: x - y
@@ -113,8 +116,9 @@ server = SimpleJSONRPCServer(('localhost', 8080))
 server.register_instance(obj)
 print("RPC server started!")
 server.serve_forever()
-</code>
-</pre> </details>
+```
+
+</details>
 
 调用结果：
 ![img_9.png](img_9.png)
@@ -128,9 +132,10 @@ server.serve_forever()
 这个第三方库，它是基于TCP协议、 ZeroMQ 和 MessagePack的，速度相对快，响应时间短，并发高
 
 <details> 
-<summary><font size="4" color="orange">zerorpc server</font></summary> 
-<pre><code class="language-cpp">import zerorpc
+<summary><font size="4" color="orange">zerorpc server</font></summary>
 
+```python
+import zerorpc
 
 class cal(object):
 
@@ -143,8 +148,9 @@ class cal(object):
 s = zerorpc.Server(cal())
 s.bind("tcp://0.0.0.0:4242")
 print("Zerorpc started...")
-s.run()</code>
-</pre> </details>
+s.run()
+```
+</details>
 
 客户端调用：
 ![img_10.png](img_10.png)
