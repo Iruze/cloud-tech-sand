@@ -94,7 +94,7 @@ RPC 是一种基于 TCP(也可以直接基于HTTP) 的通信协议，按理说�
   需要携带的信息更多，从性能角度上讲，较为低效。而RPC服务网络传输上仅传输与业务内容相关的数据，
   传输数据更小，性能更高。
   
-## 实现rpc的几种方式
+## 二、实现rpc的几种方式
 ### 基于json-rpc
 `SimpleJSONRPCServer` 是基于`json-rpc`序列化协议实现的rpc，很多web框架其自身都自己实现了json-rpc。
 <details> 
@@ -186,5 +186,20 @@ connecting to "tcp://localhost:4242"
 
 同样的，zerorpc server也可以通过命令行启动，不在赘述。
 
+# 三、Rpc和RabbitMQ结合
 
+`oslo.messaging`是openstack中的通信库，主要提供了rpc远程调用和事件通知。
+其中rpc的实现是基于rabbitMQ实现的， 从而达到`rpc + rabbitmq`中间件以实现低耦合的分布式集群架构。
+
+![img_12.png](img_12.png)
+
+> openstack当中，为什么不是rpc client和rpc server直连？
+- 集群内部的连接数较大，系统开销较高，当server是单线程时，超时会非常严重；
+- 当有多个server时，无法实现高可用；
+- 直连会增加耦合度，不利于部署和生产；
+
+> 引入MQ解决了那些问题？
+- 消息只有一份，接收者由AMQP的负载算法决定，默认为在所有Receiver中均匀发送(round robin);
+- 有了消息中间件做缓冲站，client 可以任性随意的发，server 都挂掉了？没有关系，等 server 正常工作后，自己来消息中间件取就行了;
+- 无论节点数，client只需要找到MQ即可；
 
