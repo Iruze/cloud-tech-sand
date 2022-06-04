@@ -191,7 +191,7 @@ connecting to "tcp://localhost:4242"
 `oslo.messaging`是openstack中的通信库，主要提供了rpc远程调用和事件通知。
 其中rpc的实现是基于rabbitMQ实现的， 从而达到`rpc + rabbitmq`中间件以实现低耦合的分布式集群架构。
 
-![img_12.png](img_12.png)
+![img_13.png](img_13.png)
 
 > openstack当中，为什么不是rpc client和rpc server直连？
 - 集群内部的连接数较大，系统开销较高，当server是单线程时，超时会非常严重；
