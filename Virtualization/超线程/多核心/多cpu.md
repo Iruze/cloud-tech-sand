@@ -4,7 +4,7 @@
 
 - [CPU工作方式、多核心、超线程技术详解](https://zhuanlan.zhihu.com/p/52112475)
 
-### `/proc/cpuinfo` 详解
+## /proc/cpuinfo 详解
 ①物理CPU数（physical id）：主板上实际插入的cpu数量，可以数不重复的 physical id 有几个
 
 ②CPU核心数（cpu cores）：单块CPU上面能处理数据的芯片组的数量，如双核、四核等 
@@ -30,7 +30,7 @@ cpu cores ：该逻辑核所处CPU的物理核数。比如此处cpu cores 是4�
 
 [/proc/cpuinfo文件解读（超易理解）](https://www.cnblogs.com/wxxjianchi/p/10522049.html)
 
-### `lscpu`详解
+## lscpu详解
 ![lscpu.png](img_1.png)
 
 `lscpu`从`sysfs`和`/proc/cpuinfo`收集cpu体系结构信息，命令的输出比较易读。
